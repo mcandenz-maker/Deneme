@@ -16,7 +16,8 @@
         [data-theme="celik"]{--bg:#e2e8f0;--surface:#f8fafc;--border:#0a1929;--bi:#3a5a7a;--text:#0a1929;--sub:#3a5a7a;--hdr:#0a2540;--hdt:#e8f4ff;--acc:#0a2540;--ach:#1a3a58;--warn:#b45309;--wbg:#fff7e0;--pos:#0a5928;--pbg:#d1fae5;--neg:#9a1a1a;--nbg:#fee2e2;--sbg:#e0f0ff;--sbd:#0a6abd;--tbd:#0a1929;}
 
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px;}
+        html{overscroll-behavior:none;}
+        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:80px;overscroll-behavior:none;}
 
         /* Header */
         header{background:var(--hdr);color:var(--hdt);padding:8px 12px;display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:100;}
