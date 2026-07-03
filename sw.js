@@ -1,5 +1,5 @@
-const CACHE = 'muhasebe-v2';
-const FILES = ['./muhasebe.html', './manifest.json', './icon.svg', './sw.js'];
+const CACHE = 'muhasebe-v3';
+const FILES = ['./muhasebe.html', './muhasebe_mobil.html', './manifest.json', './icon.svg', './sw.js'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)));
