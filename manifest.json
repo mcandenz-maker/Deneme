@@ -4,16 +4,22 @@
   "description": "Kişisel günlük muhasebe uygulaması",
   "start_url": "./muhasebe.html",
   "display": "standalone",
-  "background_color": "#f0f1f4",
+  "background_color": "#1e2837",
   "theme_color": "#1e2837",
   "orientation": "portrait-primary",
   "lang": "tr",
   "icons": [
     {
-      "src": "icon.svg",
+      "src": "icon-any.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ]
 }
