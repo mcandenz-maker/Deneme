@@ -1,4 +1,4 @@
-const CACHE = 'muhasebe-v1';
+const CACHE = 'muhasebe-v2';
 const FILES = ['./muhasebe.html', './manifest.json', './icon.svg', './sw.js'];
 
 self.addEventListener('install', e => {

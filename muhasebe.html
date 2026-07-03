@@ -118,7 +118,7 @@
         .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);}
         .cal-hd{text-align:center;font-size:9px;font-weight:400;letter-spacing:.6px;text-transform:uppercase;color:var(--sub);padding:6px 0 4px;border-bottom:1px solid var(--border);border-right:1px solid var(--bi);}
         .cal-hd:last-child{border-right:none;}
-        .cal-cell{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:62px;padding:4px 2px;border-bottom:1px solid var(--bi);border-right:1px solid var(--bi);cursor:pointer;transition:background .1s;}
+        .cal-cell{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:62px;padding:4px 2px;border-bottom:1px solid var(--bi);border-right:1px solid var(--bi);cursor:pointer;transition:background .1s;user-select:none;-webkit-user-select:none;}
         .cal-cell:nth-child(7n){border-right:none;}
         .cal-cell.empty{cursor:default;opacity:.35;background:var(--bg);}
         .cal-cell:hover:not(.empty){background:var(--bg);}
@@ -558,11 +558,11 @@
             if(bList.length){html+='<div class="cell-icons">';bList.forEach(b=>{const cls=b.paid?'ci done':'ci';const ck=b.paid?'<span class="ck">✓</span>':'';html+=`<span class="${cls}" title="${esc(b.name)}">${b.icon||'🔔'}${ck}</span>`;});html+='</div>';}
 
             el.innerHTML=html;
-            let _ht;
-            el.addEventListener('touchstart',()=>{_ht=setTimeout(()=>openDay(ds),500);},{passive:true});
-            el.addEventListener('touchend',()=>clearTimeout(_ht));
-            el.addEventListener('touchmove',()=>clearTimeout(_ht));
-            el.addEventListener('dblclick',()=>openDay(ds));
+            let _ht, _dc=0, _dt;
+            el.addEventListener('touchstart',()=>{_ht=setTimeout(()=>{openDay(ds);_ht=null;},600);},{passive:true});
+            el.addEventListener('touchend',()=>{if(_ht){clearTimeout(_ht);_ht=null;}});
+            el.addEventListener('touchmove',()=>{clearTimeout(_ht);_ht=null;});
+            el.addEventListener('click',()=>{_dc++;clearTimeout(_dt);_dt=setTimeout(()=>{_dc=0;},400);if(_dc>=2){_dc=0;openDay(ds);}});
             grid.appendChild(el);
         }
     }
