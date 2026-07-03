@@ -560,30 +560,26 @@
             el.innerHTML=html;
             let _ht, _dc=0, _dt;
             el.addEventListener('touchstart',()=>{_ht=setTimeout(()=>{openDay(ds);_ht=null;},600);},{passive:true});
-            el.addEventListener('touchend',()=>{if(_ht){clearTimeout(_ht);_ht=null;}});
+            el.addEventListener('touchend',()=>{if(_ht){clearTimeout(_ht);_ht=null;selectDay(ds);}});
             el.addEventListener('touchmove',()=>{clearTimeout(_ht);_ht=null;});
-            el.addEventListener('click',()=>{_dc++;clearTimeout(_dt);_dt=setTimeout(()=>{_dc=0;},400);if(_dc>=2){_dc=0;openDay(ds);}});
+            el.addEventListener('click',()=>{_dc++;clearTimeout(_dt);_dt=setTimeout(()=>{if(_dc===1)selectDay(ds);_dc=0;},300);if(_dc>=2){clearTimeout(_dt);_dc=0;openDay(ds);}});
             grid.appendChild(el);
         }
     }
 
     // ── Gün paneli ───────────────────────────────────────────────────────────
-    function openDay(ds){
+    function selectDay(ds){
         selDate=ds;
         const d=new Date(ds+'T00:00:00');
         viewY=d.getFullYear();viewM=d.getMonth();
         document.getElementById('dpTitle').textContent=dLabel(ds);
         document.getElementById('dayContent').style.display='';
         document.getElementById('addModalTitle').textContent=dLabel(ds);
-        renderCalendar();
-        renderDayBar();
-        renderRecList();
-        renderKayitInline();
-       
+        renderCalendar();renderDayBar();renderRecList();renderKayitInline();
         const pnl=document.getElementById('dayPnl');
         setTimeout(()=>pnl.scrollIntoView({behavior:'smooth',block:'start'}),50);
-        openAddModal('kayit');
     }
+    function openDay(ds){selectDay(ds);openAddModal('kayit');}
 
     function openAddModal(tab){
         tab=tab||'kayit';
@@ -987,7 +983,7 @@
         box.innerHTML=list.map(b=>{
             const cls=b.dLeft===0||b.dLeft<=3?'urgent':b.dLeft<=7?'soon':'later';
             const lbl=b.dLeft===0?'Bugün!':b.dLeft+' gün';
-            return `<div class="up-card">
+            return `<div class="up-card" onclick="selectDay('${b.date}')" style="cursor:pointer">
                 <div class="up-card-top">
                     <span class="up-card-icon">${b.icon||'🔔'}</span>
                     <span class="up-card-days ${cls}">${lbl}</span>
