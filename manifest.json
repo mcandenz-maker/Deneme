@@ -1,0 +1,19 @@
+{
+  "name": "Günlük Muhasebe",
+  "short_name": "Muhasebe",
+  "description": "Kişisel günlük muhasebe uygulaması",
+  "start_url": "./muhasebe.html",
+  "display": "standalone",
+  "background_color": "#f0f1f4",
+  "theme_color": "#1e2837",
+  "orientation": "portrait-primary",
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
